@@ -10,6 +10,6 @@
 	
 	<!-- loginInfo Table -->
 	<insert id="insertLogin" parameterType="io.github.hastar.VO.LoginVO">
-		
+		insert into loginInfo (id, `name`, image) values (#{id}, #{name}, #{image})
 	</insert>
 </mapper>
