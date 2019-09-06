@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import io.github.hastar.Dao.LoginDao;
 import io.github.hastar.Util.HttpUtil;
 import io.github.hastar.Util.QueryId;
+import io.github.hastar.VO.LoginVO;
+import net.sf.json.JSONObject;
 
 @Service
 public class LoginService {
@@ -61,11 +63,17 @@ public class LoginService {
 	}
 	
 	public boolean setData(HashMap<String, Object> userMap) {
+		JSONObject p = JSONObject.fromObject(userMap.get("properties"));
+		String id = userMap.get("id").toString();
+		String name = p.getString("nickname");
+		String image = p.getString("profile_image");
+		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		QueryId query = new QueryId();
 		paramMap.put("queryType", "insert");
 		paramMap.put("queryId", query.id("loginInfo")); // queryVo
-		//paramMap.put("params", ) // loginVo
+		paramMap.put("params", new LoginVO(id, name, image)); // loginVo
+		ld.db(paramMap);
 		
 		return false;
 	}

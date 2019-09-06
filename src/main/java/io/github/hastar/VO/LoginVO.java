@@ -9,7 +9,9 @@ public class LoginVO {
 	String image;
 	
 	public LoginVO(String id, String name, String image) {
-		
+		this.id = id;
+		this.name = name;
+		this.image = image;
 	}
 	
 	public int getNo() {
