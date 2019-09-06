@@ -15,7 +15,7 @@ import io.github.hastar.harin.BoardService;
 import io.github.hastar.mapper.BoardMapper;
 
 @Controller
-public class UploadController {
+public class FileController {
 	
 	@Autowired
 	UploadService us;
@@ -24,10 +24,12 @@ public class UploadController {
 	BoardService bsi;
 	
 	@RequestMapping("/upload")
-	public void upload(@RequestParam("file") MultipartFile[] files, PostVO pv, HttpServletRequest req, HttpSession session) {
+	public String upload(@RequestParam("file") MultipartFile[] files, PostVO pv, HttpServletRequest req, HttpSession session) {
 		System.out.println("SESSION : "+ session.getAttribute("name") + session.getAttribute("id"));
 		int noticeNo = bsi.setNewData(pv,session);
 		us.fileUpload(files, req, noticeNo);
+		
+		return "redirect:/board";
 	}
 	
 }
