@@ -73,7 +73,7 @@
 				</div>
 			</nav>
 			<div class="container-fluid">
-				<form method="post" action="" enctype="multipart/form-data">
+				<form method="post" action="/upload" enctype="multipart/form-data">
 					<h2>Title</h2>
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" aria-label="Default"
@@ -86,7 +86,7 @@
 					<h2>File Upload</h2>
 					<div class="input-group">
 						<div class="custom-file">
-							<input type="file" class="custom-file-input"
+							<input type="file" class="custom-file-input" name="file" multiple="multiple" 
 								id="inputGroupFile04"> <label class="custom-file-label"
 								for="inputGroupFile04">Choose file</label>
 						</div>

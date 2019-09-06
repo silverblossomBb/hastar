@@ -62,7 +62,7 @@ public class LoginService {
 		}
 	}
 	
-	public boolean setData(HashMap<String, Object> userMap) {
+	private boolean setData(HashMap<String, Object> userMap) {
 		JSONObject p = JSONObject.fromObject(userMap.get("properties"));
 		String id = userMap.get("id").toString();
 		String name = p.getString("nickname");
