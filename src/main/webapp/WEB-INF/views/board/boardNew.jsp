@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -11,10 +12,14 @@
 <title>Simple Sidebar</title>
 <!-- Bootstrap core CSS -->
 <!-- Custom styles for this template -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<link href="<c:url value='/resources/vendor/bootstrap/css/bootstrap.min.css' />" rel="stylesheet">
-<link href="<c:url value='/resources/css/simple-sidebar.css' />" rel="stylesheet">
-<script src="<c:url value="/resources/js/test.js"/>"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<link
+	href="<c:url value='/resources/vendor/bootstrap/css/bootstrap.min.css' />"
+	rel="stylesheet">
+<link href="<c:url value='/resources/css/simple-sidebar.css' />"
+	rel="stylesheet">
+<script src="<c:url value="/resources/js/boardNew.js"/>"></script>
 </head>
 <body ng-app="hastarApp" ng-controller="MainCtrl">
 	<div class="d-flex" id="wrapper">
@@ -22,14 +27,15 @@
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading">Ha-Star😁</div>
 			<div class="list-group list-group-flush">
-				<a href="/board" class="list-group-item list-group-item-action bg-light">
-				Bulletin board💬</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">
-				File upload↗</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">
-				File download↘</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">My Info🕶</a>
-				<a href="#" class="list-group-item list-group-item-action bg-light">TEMP</a>
+				<a href="#" class="list-group-item list-group-item-action bg-light">Bulletin
+					board💬</a> <a href="#"
+					class="list-group-item list-group-item-action bg-light">File
+					upload↗</a> <a href="#"
+					class="list-group-item list-group-item-action bg-light">File
+					download↘</a> <a href="#"
+					class="list-group-item list-group-item-action bg-light">My
+					Info🕶</a> <a href="#"
+					class="list-group-item list-group-item-action bg-light">TEMP</a>
 			</div>
 		</div>
 		<!-- /#sidebar-wrapper -->
@@ -66,7 +72,9 @@
 					</ul>
 				</div>
 			</nav>
-			<div class="container-fluid">{{name}}</div>
+			<div class="container-fluid">
+			{{name}}
+			</div>
 		</div>
 		<!-- /#page-content-wrapper -->
 
@@ -74,7 +82,8 @@
 	<!-- /#wrapper -->
 	<!-- Bootstrap core JavaScript -->
 	<script src="<c:url value='/resources/vendor/jquery/jquery.min.js' />"></script>
-	<script src="<c:url value='/resources/vendor/bootstrap/js/bootstrap.bundle.min.js' />"></script>
+	<script
+		src="<c:url value='/resources/vendor/bootstrap/js/bootstrap.bundle.min.js' />"></script>
 	<!-- Menu Toggle Script -->
 	<script>
 		$("#menu-toggle").click(function(e) {
