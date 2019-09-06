@@ -40,7 +40,7 @@ app.controller('MainCtrl',function($scope,$http){
 			url:"/getUserInfo",
 			method:"POST"
 		}).then(function(data){
-			console.log("data : ",data.data);
+			console.log("dataE : ",data);
 			$scope.boardData=data.data;
 		}).catch(function(err){
 			console.log("ERR! : ",err);
@@ -49,4 +49,5 @@ app.controller('MainCtrl',function($scope,$http){
 	
 	$scope.selectOnePost();
 	$scope.getStorageData();
+	$scope.getUserInfo();
 });
