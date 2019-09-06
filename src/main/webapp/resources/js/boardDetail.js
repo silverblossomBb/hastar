@@ -37,7 +37,7 @@ app.controller('MainCtrl',function($scope,$http){
 	
 	$scope.getUserInfo = function(){
 		$http({
-			url:"/getUserInfo/"+$scope.viewN,
+			url:"/getUserInfo",
 			method:"POST"
 		}).then(function(data){
 			console.log("data : ",data.data);

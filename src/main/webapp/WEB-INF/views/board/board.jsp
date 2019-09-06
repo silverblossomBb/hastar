@@ -73,7 +73,7 @@
 				<div class="container">
 					<table class="table table-striped">
 						<thead>
-							<tr>	
+							<tr>
 								<th>No</th>
 								<th>Comment</th>
 								<th>NickName</th>

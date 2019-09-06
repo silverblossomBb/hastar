@@ -16,6 +16,7 @@ app.controller('MainCtrl',function($scope,$http){
 			console.log("ERR! : ",err);
 		});
 	}
+	
 	$scope.intoDetail = function(inputNo){
 		location.href="/view/"+inputNo;
 	}

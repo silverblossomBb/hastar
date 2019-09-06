@@ -18,6 +18,7 @@ public class DataController {
 	
 	@Autowired
 	BoardService bsi;
+	
 	@PostMapping("/selectAllData")
 	public List<PostVO> selectBoardData(){
 		List<PostVO> resultMap =bsi.getAllData(); 
@@ -48,7 +49,8 @@ public class DataController {
 		return resultList;
 	}
 	
-	@PostMapping String getUserInfo(HttpSession session) {
+	@PostMapping("/getUserInfo")
+	String getUserInfo(HttpSession session) {
 		if(session.getAttribute("name") != null) {
 			return session.getAttribute("name").toString();
 		}
