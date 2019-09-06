@@ -1,4 +1,4 @@
-package io.github.hastar;
+package io.github.hastar.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
