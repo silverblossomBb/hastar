@@ -25,13 +25,14 @@
 	<div class="d-flex" id="wrapper">
 		<!-- Sidebar -->
 		<div class="bg-light border-right" id="sidebar-wrapper">
-			<a href="/test"><div class="sidebar-heading">
-				Ha-Star😁</div></a>
+			<a href="/test"><div class="sidebar-heading">Ha-Star😁</div></a>
 			<div class="list-group list-group-flush">
-				<a href="/board" class="list-group-item list-group-item-action bg-light">
-				Bulletin board💬</a>
-				<a href="/myInfo" class="list-group-item list-group-item-action bg-light">My Info🕶</a>
-				<a href="/temp" class="list-group-item list-group-item-action bg-light">TEMP</a>
+				<a href="/board"
+					class="list-group-item list-group-item-action bg-light">
+					Bulletin board💬</a> <a href="/myInfo"
+					class="list-group-item list-group-item-action bg-light">My
+					Info🕶</a> <a href="/temp"
+					class="list-group-item list-group-item-action bg-light">TEMP</a>
 			</div>
 		</div>
 		<!-- /#sidebar-wrapper -->
@@ -81,31 +82,28 @@
 					<span class="badge badge-success">Content</span>
 					<div class="alert alert-light" role="alert">{{boardData.content}}</div>
 				</div>
-				
-				
+
 				<div class="jumbotron jumbotron-fluid">
-					<div class="container">
-						<h4>File 위치</h4>
+					<div class="container" ng-repeat="item in storageFile">
+					<button type="button" class="btn btn-warning" ng-click="goToFile(item.no)">{{item.originName}}</button>
 					</div>
 				</div>
 			</div>
+			<!-- /#page-content-wrapper -->
+
 		</div>
-		<!-- /#page-content-wrapper -->
-
-	</div>
-	<!-- /#wrapper -->
-	<!-- Bootstrap core JavaScript -->
-	<script src="<c:url value='/resources/vendor/jquery/jquery.min.js' />"></script>
-	<script
-		src="<c:url value='/resources/vendor/bootstrap/js/bootstrap.bundle.min.js' />"></script>
-	<!-- Menu Toggle Script -->
-	<script>
-		$("#menu-toggle").click(function(e) {
-			e.preventDefault();
-			$("#wrapper").toggleClass("toggled");
-		});
-	</script>
-
+		<!-- /#wrapper -->
+		<!-- Bootstrap core JavaScript -->
+		<script src="<c:url value='/resources/vendor/jquery/jquery.min.js' />"></script>
+		<script
+			src="<c:url value='/resources/vendor/bootstrap/js/bootstrap.bundle.min.js' />"></script>
+		<!-- Menu Toggle Script -->
+		<script>
+			$("#menu-toggle").click(function(e) {
+				e.preventDefault();
+				$("#wrapper").toggleClass("toggled");
+			});
+		</script>
 </body>
 
 </html>

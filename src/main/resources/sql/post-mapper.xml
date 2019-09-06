@@ -26,4 +26,10 @@
 		  FROM `notice`
 		 WHERE name=#{name} and content=#{content} and title=#{title} 
 	</select>
+	
+	<select id="getFileData" resultType="hashmap">
+		SELECT *
+		  FROM `upload`
+		 WHERE noticeNo=#{no}
+	</select>
 </mapper>

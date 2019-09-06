@@ -1,17 +1,15 @@
 package io.github.hastar.harin;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import io.github.hastar.VO.PostVO;
 
@@ -34,6 +32,13 @@ public class DataController {
 	
 	public HashMap<String,Object> crudData(){
 		return null;
+	}
+	
+	@PostMapping("/getFileList/{numb}")
+	public List<HashMap<String,Object>> getFileList(@PathVariable String numb){
+		List<HashMap<String,Object>> resultList = new ArrayList<HashMap<String,Object>>();
+		resultList = bsi.getFileData(numb);
+		return resultList;
 	}
 	
 

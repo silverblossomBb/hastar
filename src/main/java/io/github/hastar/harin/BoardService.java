@@ -1,5 +1,7 @@
 package io.github.hastar.harin;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,7 +14,7 @@ import io.github.hastar.mapper.BoardMapper;
 
 @Service
 public class BoardService {
-
+	
 	@Autowired
 	BoardMapper bm;
 	
@@ -34,5 +36,11 @@ public class BoardService {
 			return Integer.parseInt(pvs.getNo());
 		}
 		return -1;
+	}
+	
+	public List<HashMap<String,Object>> getFileData(String no){
+		List<HashMap<String,Object>> resultList = bm.getFileData(no);
+		System.out.println("RESULT LIST = "+resultList.toString());
+		return resultList;
 	}
 }
