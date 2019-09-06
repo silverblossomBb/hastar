@@ -72,9 +72,7 @@
 					</ul>
 				</div>
 			</nav>
-			<div class="container-fluid">
-				{{name}}
-			</div>
+			<div class="container-fluid">{{name}}</div>
 		</div>
 		<!-- /#page-content-wrapper -->
 
