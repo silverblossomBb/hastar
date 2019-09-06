@@ -3,9 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sql">
-	
+	<!-- DB Test -->
 	<select id="test" resultType="Integer">
 		select 1 as cnt
 	</select>
 	
+	<!-- loginInfo Table -->
+	<insert id="insertLogin" parameterType="io.github.hastar.VO.LoginVO">
+		
+	</insert>
 </mapper>
