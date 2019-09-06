@@ -34,6 +34,7 @@ app.controller('MainCtrl',function($scope,$http){
 		location.href="/download/"+idex;
 	}
 	
+	
 	$scope.selectOnePost();
 	$scope.getStorageData();
 });

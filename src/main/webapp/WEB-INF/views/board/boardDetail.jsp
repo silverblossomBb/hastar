@@ -70,6 +70,7 @@
 				</div>
 			</nav>
 			<div class="container-fluid">
+			${seesionScope.id} // {{boardData.name}} //
 				<span class="badge badge-success">No</span> <span
 					class="badge badge-secondary">{{boardData.no}}</span><br> <span
 					class="badge badge-pill badge-secondary">Writer :
@@ -90,7 +91,6 @@
 				</div>
 			</div>
 			<!-- /#page-content-wrapper -->
-
 		</div>
 		<!-- /#wrapper -->
 		<!-- Bootstrap core JavaScript -->

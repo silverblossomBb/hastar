@@ -35,8 +35,16 @@ public class DataController {
 	}
 	
 	@PostMapping("/getFileList/{numb}")
-	public List<HashMap<String,Object>> getFileList(@PathVariable String numb){
+	public List<HashMap<String,Object>> getFileList(@PathVariable String numb,HttpSession session){
 		List<HashMap<String,Object>> resultList = new ArrayList<HashMap<String,Object>>();
+		if(session.getAttribute("id")==null) {
+			HashMap<String,Object> resultMap = new HashMap<String,Object>();
+			resultMap.put("status", "500");
+			resultMap.put("statusComment", "로그인이 되어 있지 않습니다.");
+			resultList.add(resultMap);
+			return resultList;
+		}
+		
 		resultList = bsi.getFileData(numb);
 		return resultList;
 	}

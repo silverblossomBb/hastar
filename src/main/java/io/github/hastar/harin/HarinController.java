@@ -25,7 +25,11 @@ public class HarinController {
 	}
 	
 	@GetMapping("/board")
-	public String boardTest() {
+	public String boardTest(HttpSession session) {
+		if(session.getAttribute("id")==null) {
+			System.out.println("사용자의 아이디 값이 없습니다.");
+			return "redirect:/test";
+		}
 		return "board/board";
 	}
 	
@@ -36,7 +40,11 @@ public class HarinController {
 	}
 	
 	@GetMapping("/createBoard")
-	public String createNewBoard() {
+	public String createNewBoard(HttpSession session) {
+		if(session.getAttribute("id")==null) {
+			System.out.println("사용자의 아이디 값이 없습니다.");
+			return "redirect:/board";
+		}
 		return "board/boardNew";
 	}
 	

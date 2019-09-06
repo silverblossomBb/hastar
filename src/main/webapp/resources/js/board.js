@@ -1,7 +1,7 @@
 const app = angular.module('hastarApp',[]);
 
 app.controller('MainCtrl',function($scope,$http){
-	$scope.storage={};
+	$scope.storage=[];
 	$scope.boardData={};
 	$scope.name="Board CRUD test";
 	
