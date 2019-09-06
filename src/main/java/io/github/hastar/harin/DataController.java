@@ -50,7 +50,7 @@ public class DataController {
 	}
 	
 	@PostMapping("/getUserInfo")
-	String getUserInfo(HttpSession session) {
+	public String getUserInfo(HttpSession session) {
 		if(session.getAttribute("name") != null) {
 			return session.getAttribute("name").toString();
 		}
