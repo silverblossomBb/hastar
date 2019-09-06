@@ -24,7 +24,7 @@
 	<select id="selectNewData" resultType="PostVO">
 		SELECT *
 		  FROM `notice`
-		 WHERE name=#{name} and content=#{content} and title=#{title} 
+		 WHERE name=#{name} and content=#{content} and title=#{title} and timeLog = #{timeLog}
 	</select>
 	
 	<select id="getFileData" resultType="hashmap">
