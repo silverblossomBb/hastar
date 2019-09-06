@@ -21,7 +21,7 @@
 		 VALUES(#{name},#{title},#{content})
 	</insert>
 	
-	<select id="selectNewData">
+	<select id="selectNewData" resultType="PostVO">
 		SELECT *
 		  FROM `notice`
 		 WHERE name=#{name} and content=#{content} and title=#{title} 

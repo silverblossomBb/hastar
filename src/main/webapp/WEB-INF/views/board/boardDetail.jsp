@@ -25,17 +25,13 @@
 	<div class="d-flex" id="wrapper">
 		<!-- Sidebar -->
 		<div class="bg-light border-right" id="sidebar-wrapper">
-			<div class="sidebar-heading">Ha-Star😁</div>
+			<a href="/test"><div class="sidebar-heading">
+				Ha-Star😁</div></a>
 			<div class="list-group list-group-flush">
-				<a href="#" class="list-group-item list-group-item-action bg-light">Bulletin
-					board💬</a> <a href="#"
-					class="list-group-item list-group-item-action bg-light">File
-					upload↗</a> <a href="#"
-					class="list-group-item list-group-item-action bg-light">File
-					download↘</a> <a href="#"
-					class="list-group-item list-group-item-action bg-light">My
-					Info🕶</a> <a href="#"
-					class="list-group-item list-group-item-action bg-light">TEMP</a>
+				<a href="/board" class="list-group-item list-group-item-action bg-light">
+				Bulletin board💬</a>
+				<a href="/myInfo" class="list-group-item list-group-item-action bg-light">My Info🕶</a>
+				<a href="/temp" class="list-group-item list-group-item-action bg-light">TEMP</a>
 			</div>
 		</div>
 		<!-- /#sidebar-wrapper -->
