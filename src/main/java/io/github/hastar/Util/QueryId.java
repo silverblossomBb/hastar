@@ -7,8 +7,15 @@ public class QueryId {
 	public QueryVO id(String table) {
 		QueryVO target = null;
 		
-		if ("loginInfo".equals(table)) {
+		switch (table) {
+		case "loginInfo":
 			target = new QueryVO("selectLogin", "insertLogin", "deleteLogin", "updateLogin");
+			break;
+			
+		case "upload":
+			target = new QueryVO("selectUpload", "insertUpload", "deleteUpload", "updateUpload");
+			break;
+			
 		}
 		
 		return target;

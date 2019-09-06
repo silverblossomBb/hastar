@@ -1,7 +1,10 @@
 package io.github.hastar.controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,8 +24,13 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/KakaoBack")
-	public String kakaoBack(HttpServletRequest req, HttpServletResponse res) {
-		ls.step2(req, res);
+	public String kakaoBack(HttpServletRequest req, HttpServletResponse res, HttpSession session) {
+		HashMap<String, Object> resultMap = ls.step2(req, res); 
+		if ("true".equals(resultMap.get("status"))) {
+			session.setAttribute("id", resultMap.get("id"));
+			session.setAttribute("name", resultMap.get("name"));
+			session.setAttribute("image", resultMap.get("image"));
+		}
 		
 		return "redirect:/test";
 	}

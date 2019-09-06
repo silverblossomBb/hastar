@@ -8,11 +8,19 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import io.github.hastar.Dao.UploadDao;
+import io.github.hastar.Util.QueryId;
+import io.github.hastar.VO.UploadVO;
+
 @Service
 public class UploadService {
+	
+	@Autowired
+	UploadDao uploadDao;
 	
 	public void fileUpload(MultipartFile[] files, HttpServletRequest req) {
 		try {
@@ -25,8 +33,8 @@ public class UploadService {
 					f.mkdirs();
 				}
 				
-				String originalName = file.getOriginalFilename();
-				String ext = originalName.substring(originalName.lastIndexOf(".")+1, originalName.length());
+				String originName = file.getOriginalFilename();
+				String ext = originName.substring(originName.lastIndexOf(".")+1, originName.length());
 				
 				String uuid = UUID.randomUUID().toString();
 				OutputStream os = new FileOutputStream(new File(path + uuid));
@@ -34,7 +42,7 @@ public class UploadService {
 				os.write(data);
 				os.close();
 				
-				setData();
+				setData(new UploadVO(100, "test", "test", originName, ext, uuid));
 			}
 			
 		} catch (Exception e) {
@@ -43,9 +51,14 @@ public class UploadService {
 		
 	}
 	
-	private void setData() {
-		
+	private void setData(UploadVO vo) {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		QueryId query = new QueryId();
+		paramMap.put("queryType", "insert");
+		paramMap.put("queryId", query.id("upload"));
+		paramMap.put("params", vo);
+		uploadDao.db(paramMap);
+		
 	}
 	
 }

@@ -21,7 +21,7 @@ import net.sf.json.JSONObject;
 public class LoginService {
 	
 	@Autowired
-	LoginDao ld;
+	LoginDao loginDao;
 	
 	public void step1(HttpServletResponse res) {		
 		try {
@@ -40,7 +40,9 @@ public class LoginService {
 		
 	};
 	
-	public void step2(HttpServletRequest req, HttpServletResponse res) {
+	public HashMap<String, Object> step2(HttpServletRequest req, HttpServletResponse res) {
+		HashMap<String, Object> status = null;
+		
 		try {
 			String code = req.getParameter("code");		
 			String url = "https://kauth.kakao.com/oauth/token";
@@ -55,14 +57,16 @@ public class LoginService {
 			resultMap = HttpUtil.getUrl(userUrl);
 			System.out.println(resultMap);
 			
-			setData(resultMap);
+			status = setData(resultMap);
 			
 		} catch (Exception e) {
 			e.printStackTrace();	
 		}
+		
+		return status;
 	}
 	
-	private boolean setData(HashMap<String, Object> userMap) {
+	private HashMap<String, Object> setData(HashMap<String, Object> userMap) {
 		JSONObject p = JSONObject.fromObject(userMap.get("properties"));
 		String id = userMap.get("id").toString();
 		String name = p.getString("nickname");
@@ -73,9 +77,8 @@ public class LoginService {
 		paramMap.put("queryType", "insert");
 		paramMap.put("queryId", query.id("loginInfo")); // queryVo
 		paramMap.put("params", new LoginVO(id, name, image)); // loginVo
-		ld.db(paramMap);
 		
-		return false;
+		return loginDao.db(paramMap);
 	}
 	
 }

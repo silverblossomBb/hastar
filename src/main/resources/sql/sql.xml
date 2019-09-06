@@ -12,4 +12,9 @@
 	<insert id="insertLogin" parameterType="io.github.hastar.VO.LoginVO">
 		insert into loginInfo (id, `name`, image) values (#{id}, #{name}, #{image})
 	</insert>
+	
+	<!-- upload Table -->
+	<insert id="insertUpload" parameterType="io.github.hastar.VO.UploadVO">
+		insert into upload (noticeNo, id, `name`, originName, ext, `uuid`) values (#{noticeNo}, #{id}, #{name}, #{originName}, #{ext}, #{uuid});
+	</insert>
 </mapper>
