@@ -50,12 +50,14 @@ public class DataController {
 	}
 	
 	@PostMapping("/getUserInfo")
-	public String getUserInfo(HttpSession session) {
-		if(session.getAttribute("id") != null) {
-			return session.getAttribute("id").toString();
+	public HashMap<String, Object> getUserInfo(HttpSession session) {
+		HashMap<String, Object> test = new HashMap<String, Object>();
+		if (session.getAttribute("name") != null) {
+			test.put("result", session.getAttribute("name").toString());
+		}else {
+			test.put("result", "false");
 		}
-		return "false";
+		return test;
 	}
-	
 
 }
