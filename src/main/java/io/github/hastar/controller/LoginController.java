@@ -27,7 +27,6 @@ public class LoginController {
 	public String kakaoBack(HttpServletRequest req, HttpServletResponse res, HttpSession session) {
 		HashMap<String, Object> resultMap = ls.step2(req, res); 
 		if ("true".equals(resultMap.get("status"))) {
-			System.out.println("ddd");
 			session.setAttribute("id", resultMap.get("id"));
 			session.setAttribute("name", resultMap.get("name"));
 			session.setAttribute("image", resultMap.get("image"));

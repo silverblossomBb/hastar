@@ -7,17 +7,19 @@ public class UploadVO {
 	String id;
 	String name;
 	String originName;
-	String ext;
 	String uuid;
 	String timeLog;
 	
-	public UploadVO(int noticeNo, String id, String name, String originName, String ext, String uuid) {
+	public UploadVO(int noticeNo, String id, String name, String originName, String uuid) {
 		this.noticeNo = noticeNo;
 		this.id = id;
 		this.name = name;
 		this.originName = originName;
-		this.ext = ext;
 		this.uuid = uuid;
+	}
+	
+	public UploadVO() {
+		
 	}
 
 	public int getNo() {
@@ -60,14 +62,6 @@ public class UploadVO {
 		this.originName = originalName;
 	}
 
-	public String getExt() {
-		return ext;
-	}
-
-	public void setExt(String ext) {
-		this.ext = ext;
-	}
-
 	public String getUuid() {
 		return uuid;
 	}
@@ -87,7 +81,7 @@ public class UploadVO {
 	@Override
 	public String toString() {
 		return "UploadVO [no=" + no + ", noticeNo=" + noticeNo + ", id=" + id + ", name=" + name + ", originName="
-				+ originName + ", ext=" + ext + ", uuid=" + uuid + ", timeLog=" + timeLog + "]";
+				+ originName + ", uuid=" + uuid + ", timeLog=" + timeLog + "]";
 	}
 	
 }

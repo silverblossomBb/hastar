@@ -55,7 +55,6 @@ public class LoginService {
 			String userUrl = "https://kapi.kakao.com/v2/user/me";
 			userUrl += "?access_token=" + resultMap.get("access_token");
 			resultMap = HttpUtil.getUrl(userUrl);
-			System.out.println(resultMap);
 			
 			status = setData(resultMap);
 			

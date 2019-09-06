@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,7 @@ import io.github.hastar.Util.QueryId;
 import io.github.hastar.VO.UploadVO;
 
 @Service
-public class UploadService {
+public class FileService {
 	
 	@Autowired
 	UploadDao uploadDao;
@@ -34,7 +35,6 @@ public class UploadService {
 				}
 				
 				String originName = file.getOriginalFilename();
-				String ext = originName.substring(originName.lastIndexOf(".")+1, originName.length());
 				
 				String uuid = UUID.randomUUID().toString();
 				OutputStream os = new FileOutputStream(new File(path + uuid));
@@ -42,7 +42,7 @@ public class UploadService {
 				os.write(data);
 				os.close();
 				
-				setData(new UploadVO(noticeNo, "test", "test", originName, ext, uuid));
+				setUpload(new UploadVO(noticeNo, "test", "test", originName, uuid));
 			}
 			
 		} catch (Exception e) {
@@ -51,7 +51,7 @@ public class UploadService {
 		
 	}
 	
-	private void setData(UploadVO vo) {
+	private void setUpload(UploadVO vo) {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		QueryId query = new QueryId();
 		paramMap.put("queryType", "insert");
@@ -61,4 +61,26 @@ public class UploadService {
 		
 	}
 	
+	public void fileDownload(int noticeNo, String id) {
+		getUpload(noticeNo);
+	}
+	
+	private void getUpload(int noticeNo) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		QueryId query = new QueryId();
+		UploadVO vo = new UploadVO();
+		vo.setNoticeNo(noticeNo);
+		paramMap.put("queryType", "selectList");
+		paramMap.put("queryId", query.id("upload"));
+		paramMap.put("params", vo);
+		
+		List<HashMap<String,Object>> returnList =(List<HashMap<String,Object>>) uploadDao.db(paramMap).get("result");
+		returnList.get(0).get("uuid");
+		
+		String path = "D:\\HastarData\\";
+	}
+	
+	private void setDownload() {
+		
+	}
 }

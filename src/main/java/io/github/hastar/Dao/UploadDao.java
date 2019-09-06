@@ -16,7 +16,7 @@ public class UploadDao {
 	SqlSession sql;
 	
 	public HashMap<String, Object> db(HashMap<String, Object> paramMap) {
-		HashMap<String, Object> result = null;
+		HashMap<String, Object> resultMap = null;
 		
 		// queryType // queryId // params
 		String queryType = paramMap.get("queryType").toString();
@@ -27,8 +27,12 @@ public class UploadDao {
 		case "insert":
 			sql.insert(queryId.getInsert(), params);
 			break;
+		case "selectList":
+			resultMap = new HashMap<String, Object>();
+			resultMap.put("result", sql.selectList(queryId.getSelect(), params));
+			break;
 		}
 		
-		return result;
+		return resultMap;
 	}
 }

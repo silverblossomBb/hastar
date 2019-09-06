@@ -15,6 +15,10 @@
 	
 	<!-- upload Table -->
 	<insert id="insertUpload" parameterType="io.github.hastar.VO.UploadVO">
-		insert into upload (noticeNo, id, `name`, originName, ext, `uuid`) values (#{noticeNo}, #{id}, #{name}, #{originName}, #{ext}, #{uuid});
+		insert into upload (noticeNo, id, `name`, originName, `uuid`) values (#{noticeNo}, #{id}, #{name}, #{originName}, #{uuid});
 	</insert>
+	
+	<select id="selectUpload" parameterType="io.github.hastar.VO.UploadVO" resultType="hashmap">
+		select `uuid`, originName from upload where noticeNo = #{noticeNo};
+	</select>
 </mapper>
