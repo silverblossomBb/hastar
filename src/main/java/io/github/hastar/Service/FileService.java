@@ -1,14 +1,19 @@
 package io.github.hastar.Service;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,32 +28,33 @@ public class FileService {
 	@Autowired
 	UploadDao uploadDao;
 	
-	public void fileUpload(MultipartFile[] files, HttpServletRequest req, int noticeNo) {
-		try {
-			for (int i = 0; i < files.length; i++) {
-				MultipartFile file = files[i];
-				
-				String path = "D:\\HastarData\\";
-				File f = new File(path);
-				if (!f.isDirectory()) {
-					f.mkdirs();
+	public void fileUpload(MultipartFile[] files, HttpSession session, int noticeNo) {
+		if (files.length > 0) {
+			try {
+				for (int i = 0; i < files.length; i++) {
+					MultipartFile file = files[i];
+					
+					String path = "D:\\HastarData\\";
+					File f = new File(path);
+					if (!f.isDirectory()) {
+						f.mkdirs();
+					}
+					
+					String originName = file.getOriginalFilename();
+					
+					String uuid = UUID.randomUUID().toString();
+					OutputStream os = new FileOutputStream(new File(path + uuid));
+					byte[] data = file.getBytes();
+					os.write(data);
+					os.close();
+					
+					setUpload(new UploadVO(noticeNo, session.getAttribute("id").toString(), session.getAttribute("name").toString(), originName, uuid));
 				}
 				
-				String originName = file.getOriginalFilename();
-				
-				String uuid = UUID.randomUUID().toString();
-				OutputStream os = new FileOutputStream(new File(path + uuid));
-				byte[] data = file.getBytes();
-				os.write(data);
-				os.close();
-				
-				setUpload(new UploadVO(noticeNo, "test", "test", originName, uuid));
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
-		
 	}
 	
 	private void setUpload(UploadVO vo) {
@@ -61,23 +67,40 @@ public class FileService {
 		
 	}
 	
-	public void fileDownload(int noticeNo, String id) {
-		getUpload(noticeNo);
+	public void fileDownload(int noticeNo, String id, HttpServletResponse res) {
+		HashMap<String,Object> fileInfo = getUpload(noticeNo);
+		String uuid = fileInfo.get("uuid").toString();
+		System.out.println(uuid);
+		String originName = fileInfo.get("originName").toString();
+		
+		String path = "D:\\HastarData\\";
+		
+		try {
+			InputStream input = new FileInputStream(path + uuid);
+			OutputStream output = res.getOutputStream();
+			IOUtils.copy(input, output);
+			
+			//res.setHeader("Content-Disposition", "inline");
+			res.setHeader("Content-Disposition", "attachment; filename=\""+ originName + "\"");
+			
+			input.close();
+			output.close();
+		} catch (Exception e) {
+			
+		}
 	}
 	
-	private void getUpload(int noticeNo) {
+	private HashMap<String,Object> getUpload(int no) {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		QueryId query = new QueryId();
 		UploadVO vo = new UploadVO();
-		vo.setNoticeNo(noticeNo);
+		vo.setNo(no);
 		paramMap.put("queryType", "selectList");
 		paramMap.put("queryId", query.id("upload"));
 		paramMap.put("params", vo);
 		
 		List<HashMap<String,Object>> returnList =(List<HashMap<String,Object>>) uploadDao.db(paramMap).get("result");
-		returnList.get(0).get("uuid");
-		
-		String path = "D:\\HastarData\\";
+		return returnList.get(0);
 	}
 	
 	private void setDownload() {

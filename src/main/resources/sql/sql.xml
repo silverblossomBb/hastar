@@ -19,6 +19,6 @@
 	</insert>
 	
 	<select id="selectUpload" parameterType="io.github.hastar.VO.UploadVO" resultType="hashmap">
-		select `uuid`, originName from upload where noticeNo = #{noticeNo};
+		select `uuid`, originName from upload where no = #{no};
 	</select>
 </mapper>

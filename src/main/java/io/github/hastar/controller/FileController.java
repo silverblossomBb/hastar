@@ -1,6 +1,7 @@
 package io.github.hastar.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +28,14 @@ public class FileController {
 	@RequestMapping("/upload")
 	public String upload(@RequestParam("file") MultipartFile[] files, PostVO pv, HttpServletRequest req, HttpSession session) {
 		int noticeNo = bsi.setNewData(pv,session);
-		fileService.fileUpload(files, req, noticeNo);
+		fileService.fileUpload(files, session, noticeNo);
 		
 		return "redirect:/board";
 	}
 	
-	@RequestMapping("/download/{noticeNo}")
-	public void download(@PathVariable("noticeNo") String noticeNo, HttpSession session) {
-		fileService.fileDownload(Integer.parseInt(noticeNo), session.getAttribute("id").toString());
+	@RequestMapping("/download/{no}")
+	public void download(@PathVariable("no") String no, HttpSession session, HttpServletResponse res) {
+		fileService.fileDownload(Integer.parseInt(no), session.getAttribute("id").toString(), res);
 		
 	}
 }
