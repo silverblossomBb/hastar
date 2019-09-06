@@ -13,8 +13,9 @@
 <!-- Custom styles for this template -->
 <link href="<c:url value='/resources/vendor/bootstrap/css/bootstrap.min.css' />" rel="stylesheet">
 <link href="<c:url value='/resources/css/simple-sidebar.css' />" rel="stylesheet">
+<script src="<c:url value="/resources/js/test.js"/>"></script>
 </head>
-<body>
+<body ng-app="hastarApp" ng-controller="MainCtrl">
 	<div class="d-flex" id="wrapper">
 		<!-- Sidebar -->
 		<div class="bg-light border-right" id="sidebar-wrapper">
@@ -26,14 +27,13 @@
 					upload↗</a> <a href="#"
 					class="list-group-item list-group-item-action bg-light">File
 					download↘</a> <a href="#"
-					class="list-group-item list-group-item-action bg-light">My Info</a>
+					class="list-group-item list-group-item-action bg-light">My Info🕶</a>
 				<a href="#" class="list-group-item list-group-item-action bg-light">TEMP</a>
 			</div>
 		</div>
 		<!-- /#sidebar-wrapper -->
 		<!-- Page Content -->
 		<div id="page-content-wrapper">
-
 			<nav
 				class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
 				<button class="btn btn-primary" id="menu-toggle">Toggle
@@ -50,7 +50,7 @@
 						<li class="nav-item active"><a class="nav-link" href="#">Home
 								<span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+						<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -65,7 +65,7 @@
 					</ul>
 				</div>
 			</nav>
-			<div class="container-fluid">TEST</div>
+			<div class="container-fluid">test</div>
 		</div>
 		<!-- /#page-content-wrapper -->
 
