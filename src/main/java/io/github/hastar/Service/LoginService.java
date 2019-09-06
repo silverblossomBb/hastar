@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import io.github.hastar.Dao.LoginDao;
 import io.github.hastar.Util.HttpUtil;
+import io.github.hastar.Util.QueryId;
 
 @Service
 public class LoginService {
@@ -59,8 +60,12 @@ public class LoginService {
 		}
 	}
 	
-	public boolean setData(HashMap<String, Object> resultMap) {
-		
+	public boolean setData(HashMap<String, Object> userMap) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		QueryId query = new QueryId();
+		paramMap.put("queryType", "insert");
+		paramMap.put("queryId", query.id("loginInfo")); // queryVo
+		//paramMap.put("params", ) // loginVo
 		
 		return false;
 	}
