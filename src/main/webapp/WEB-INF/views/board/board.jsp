@@ -85,7 +85,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="item in storage" ng-click="intoDetail(item.no)">
+							<tr ng-repeat="item in storage | orderBy:'-no'" ng-click="intoDetail(item.no)">
 								<td>{{item.no}}</td>
 								<td>{{item.title}}</td>
 								<td>{{item.name}}</td>

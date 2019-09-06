@@ -9,7 +9,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Simple Sidebar</title>
+<title>Read</title>
 <!-- Bootstrap core CSS -->
 <!-- Custom styles for this template -->
 <script
@@ -72,7 +72,27 @@
 					</ul>
 				</div>
 			</nav>
-			<div class="container-fluid">{{name}}</div>
+			<div class="container-fluid">
+				<span class="badge badge-success">No</span> <span
+					class="badge badge-secondary">{{boardData.no}}</span><br> <span
+					class="badge badge-pill badge-secondary">Writer :
+					{{boardData.name}}</span>
+				<button type="button" class="btn btn-light">{{boardData.timeLog}}</button>
+				<div class="alert alert-primary">
+					<span class="badge badge-info">Title</span><br>{{boardData.title}}
+				</div>
+				<div class="jumbotron">
+					<span class="badge badge-success">Content</span>
+					<div class="alert alert-light" role="alert">{{boardData.content}}</div>
+				</div>
+				
+				
+				<div class="jumbotron jumbotron-fluid">
+					<div class="container">
+						<h4>File 위치</h4>
+					</div>
+				</div>
+			</div>
 		</div>
 		<!-- /#page-content-wrapper -->
 

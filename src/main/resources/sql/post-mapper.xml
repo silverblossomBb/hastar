@@ -10,10 +10,20 @@
 		 WHERE delYn = 'N'
 	</select>
 	
-	<select id="getOneData" parameterType="Integer" resultType="PostVO">
+	<select id="getOneData" resultType="PostVO">
 		SELECT *
 		  FROM `notice`
-		 WHERE no = ${no} and delYn = 'N'
+		 WHERE no = #{no} and delYn = 'N'
 	</select>
 
+	<insert id="setNewData">
+		INSERT INTO `notice`(name,title,content)
+		 VALUES(#{name},#{title},#{content})
+	</insert>
+	
+	<select id="selectNewData">
+		SELECT *
+		  FROM `notice`
+		 WHERE name=#{name} and content=#{content} and title=#{title} 
+	</select>
 </mapper>

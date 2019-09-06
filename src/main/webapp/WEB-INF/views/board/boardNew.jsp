@@ -77,11 +77,11 @@
 					<h2>Title</h2>
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" aria-label="Default"
-							aria-describedby="inputGroup-sizing-default">
+							aria-describedby="inputGroup-sizing-default" name="title">
 					</div>
 					<h2>Content</h2>
 					<div class="input-group">
-						<textarea class="form-control" aria-label="With textarea"></textarea>
+						<textarea class="form-control" aria-label="With textarea" name="content"></textarea>
 					</div>
 					<h2>File Upload</h2>
 					<div class="input-group">

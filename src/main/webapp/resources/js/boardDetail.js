@@ -13,6 +13,7 @@ app.controller('MainCtrl',function($scope,$http){
 		}).then(function(data){
 			console.log("data : ",data);
 			$scope.boardData=data.data;
+			
 		}).catch(function(err){
 			console.log("ERR! : ",err);
 		});
