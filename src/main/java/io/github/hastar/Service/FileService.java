@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -18,15 +17,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import io.github.hastar.Dao.UploadDao;
+import io.github.hastar.Dao.FileDao;
 import io.github.hastar.Util.QueryId;
+import io.github.hastar.VO.DownloadVO;
 import io.github.hastar.VO.UploadVO;
 
 @Service
 public class FileService {
 	
 	@Autowired
-	UploadDao uploadDao;
+	FileDao fileDao;
 	
 	public void fileUpload(MultipartFile[] files, HttpSession session, int noticeNo) {
 		if (files.length > 0) {
@@ -63,14 +63,13 @@ public class FileService {
 		paramMap.put("queryType", "insert");
 		paramMap.put("queryId", query.id("upload"));
 		paramMap.put("params", vo);
-		uploadDao.db(paramMap);
+		fileDao.upload(paramMap);
 		
 	}
 	
-	public void fileDownload(int noticeNo, String id, HttpServletResponse res) {
+	public void fileDownload(int noticeNo, String id, HttpServletResponse res, HttpSession session) {
 		HashMap<String,Object> fileInfo = getUpload(noticeNo);
 		String uuid = fileInfo.get("uuid").toString();
-		System.out.println(uuid);
 		String originName = fileInfo.get("originName").toString();
 		
 		String path = "D:\\HastarData\\";
@@ -82,9 +81,10 @@ public class FileService {
 			
 			//res.setHeader("Content-Disposition", "inline");
 			res.setHeader("Content-Disposition", "attachment; filename=\""+ originName + "\"");
-			
 			input.close();
 			output.close();
+			
+			
 		} catch (Exception e) {
 			
 		}
@@ -99,11 +99,16 @@ public class FileService {
 		paramMap.put("queryId", query.id("upload"));
 		paramMap.put("params", vo);
 		
-		List<HashMap<String,Object>> returnList =(List<HashMap<String,Object>>) uploadDao.db(paramMap).get("result");
+		List<HashMap<String,Object>> returnList =(List<HashMap<String,Object>>) fileDao.upload(paramMap).get("result");
 		return returnList.get(0);
 	}
 	
-	private void setDownload() {
-		
+	private void setDownload(DownloadVO vo) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		QueryId query = new QueryId();
+		paramMap.put("queryType", "insert");
+		paramMap.put("queryId", query.id("upload"));
+		paramMap.put("params", vo);
+		fileDao.download(paramMap);
 	}
 }

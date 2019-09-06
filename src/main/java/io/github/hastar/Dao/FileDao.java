@@ -6,16 +6,17 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import io.github.hastar.VO.DownloadVO;
 import io.github.hastar.VO.QueryVO;
 import io.github.hastar.VO.UploadVO;
 
 @Repository
-public class UploadDao {
+public class FileDao {
 	
 	@Autowired
 	SqlSession sql;
 	
-	public HashMap<String, Object> db(HashMap<String, Object> paramMap) {
+	public HashMap<String, Object> upload(HashMap<String, Object> paramMap) {
 		HashMap<String, Object> resultMap = null;
 		
 		// queryType // queryId // params
@@ -34,5 +35,19 @@ public class UploadDao {
 		}
 		
 		return resultMap;
+	}
+	
+	public void download(HashMap<String, Object> paramMap) {
+		// queryType // queryId // params
+		String queryType = paramMap.get("queryType").toString();
+		QueryVO queryId = (QueryVO) paramMap.get("queryId");
+		DownloadVO params = (DownloadVO) paramMap.get("params");
+		
+		switch (queryType) {
+		case "insert":
+			sql.insert(queryId.getInsert(), params);
+			break;
+		}
+		
 	}
 }

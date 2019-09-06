@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import io.github.hastar.Service.FileService;
 import io.github.hastar.VO.PostVO;
 import io.github.hastar.harin.BoardService;
-import io.github.hastar.mapper.BoardMapper;
 
 @Controller
 public class FileController {
@@ -35,7 +34,7 @@ public class FileController {
 	
 	@RequestMapping("/download/{no}")
 	public void download(@PathVariable("no") String no, HttpSession session, HttpServletResponse res) {
-		fileService.fileDownload(Integer.parseInt(no), session.getAttribute("id").toString(), res);
+		fileService.fileDownload(Integer.parseInt(no), session.getAttribute("id").toString(), res, session);
 		
 	}
 }
