@@ -32,10 +32,8 @@ public class BoardService {
 		pv.setName(session.getAttribute("name").toString());
 		int result = bm.setNewData(pv);
 		if(result>0) {
-			System.out.println("111");
 			PostVO pvs =bm.selectNewData(pv);
 			System.out.println(pvs.toString());
-			System.out.println("2222");
 			return Integer.parseInt(pvs.getNo());
 		}
 		return -1;

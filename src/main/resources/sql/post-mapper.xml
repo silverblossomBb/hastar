@@ -23,8 +23,10 @@
 	
 	<select id="selectNewData" resultType="PostVO">
 		SELECT *
-		  FROM `notice`
-		 WHERE name=#{name} and content=#{content} and title=#{title}
+ 		  FROM `notice`
+         WHERE delYn = 'N'
+         ORDER BY no DESC
+         LIMIT 1;
 	</select>
 	
 	<select id="getFileData" resultType="hashmap">
