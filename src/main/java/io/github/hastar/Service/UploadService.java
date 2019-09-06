@@ -22,7 +22,7 @@ public class UploadService {
 	@Autowired
 	UploadDao uploadDao;
 	
-	public void fileUpload(MultipartFile[] files, HttpServletRequest req) {
+	public void fileUpload(MultipartFile[] files, HttpServletRequest req, int noticeNo) {
 		try {
 			for (int i = 0; i < files.length; i++) {
 				MultipartFile file = files[i];
@@ -42,7 +42,7 @@ public class UploadService {
 				os.write(data);
 				os.close();
 				
-				setData(new UploadVO(100, "test", "test", originName, ext, uuid));
+				setData(new UploadVO(noticeNo, "test", "test", originName, ext, uuid));
 			}
 			
 		} catch (Exception e) {

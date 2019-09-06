@@ -40,7 +40,7 @@ public class HarinController {
 		return "board/boardNew";
 	}
 	
-	@PostMapping("/upload")
+	@PostMapping("/uploads")
 	public String uploadNewData(@Valid PostVO pv,@RequestParam("file")MultipartFile[] files,HttpSession session){
 		System.out.println("PostVO : "+pv);
 		bsi.setNewData(pv,session);
