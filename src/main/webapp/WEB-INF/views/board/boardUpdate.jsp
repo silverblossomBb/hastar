@@ -9,7 +9,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Read</title>
+<title>Simple Sidebar</title>
 <!-- Bootstrap core CSS -->
 <!-- Custom styles for this template -->
 <script
@@ -19,20 +19,19 @@
 	rel="stylesheet">
 <link href="<c:url value='/resources/css/simple-sidebar.css' />"
 	rel="stylesheet">
-<script src="<c:url value="/resources/js/boardDetail.js"/>"></script>
+<script src="<c:url value="/resources/js/boardUpdate.js"/>"></script>
 </head>
 <body ng-app="hastarApp" ng-controller="MainCtrl">
 	<div class="d-flex" id="wrapper">
 		<!-- Sidebar -->
 		<div class="bg-light border-right" id="sidebar-wrapper">
-			<a href="/test"><div class="sidebar-heading">Ha-Star😁</div></a>
+			<a href="/test"><div class="sidebar-heading">
+				Ha-Star😁</div></a>
 			<div class="list-group list-group-flush">
-				<a href="/board"
-					class="list-group-item list-group-item-action bg-light">
-					Bulletin board💬</a> <a href="/myInfo"
-					class="list-group-item list-group-item-action bg-light">My
-					Info🕶</a> <a href="/temp"
-					class="list-group-item list-group-item-action bg-light">TEMP</a>
+				<a href="/board" class="list-group-item list-group-item-action bg-light">
+				Bulletin board💬</a>
+				<a href="/myInfo" class="list-group-item list-group-item-action bg-light">My Info🕶</a>
+				<a href="/temp" class="list-group-item list-group-item-action bg-light">TEMP</a>
 			</div>
 		</div>
 		<!-- /#sidebar-wrapper -->
@@ -70,39 +69,45 @@
 				</div>
 			</nav>
 			<div class="container-fluid">
-				<span class="badge badge-success">No</span> <span
-					class="badge badge-secondary">{{boardData.no}}</span><br> <span
-					class="badge badge-pill badge-secondary">Writer :
-					{{boardData.name}}</span>
-				<button type="button" class="btn btn-light">{{boardData.timeLog}}</button>
-				<div class="alert alert-primary">
-					<span class="badge badge-info">Title</span><br>{{boardData.title}}
-				</div>
-				<div class="jumbotron">
-					<span class="badge badge-success">Content</span>
-					<div class="alert alert-light" role="alert">{{boardData.content}}</div>
-				</div>
-
-				<div class="jumbotron jumbotron-fluid">
-					<div class="container" ng-repeat="item in storageFile">
-					<button type="button" class="btn btn-warning" ng-click="goToFile(item.no)">{{item.originName}}</button>
+				<form method="post" action="/upload" enctype="multipart/form-data">
+					<h2>Title</h2>
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" aria-label="Default"
+							aria-describedby="inputGroup-sizing-default" name="title" id="title">
 					</div>
-				</div>
+					<h2>Content</h2>
+					<div class="input-group">
+						<textarea class="form-control" aria-label="With textarea" name="content" id="content"></textarea>
+					</div>
+					<h2>File Upload</h2>
+					<div class="input-group">
+						<div class="custom-file">
+							<input type="file" class="custom-file-input" name="file" multiple="multiple" 
+								id="inputGroupFile04"> <label class="custom-file-label"
+								for="inputGroupFile04">Choose file</label>
+						</div>
+					</div>
+
+					<input type="submit" class="btn btn-success" value="전송">
+				</form>
 			</div>
-			<!-- /#page-content-wrapper -->
 		</div>
-		<!-- /#wrapper -->
-		<!-- Bootstrap core JavaScript -->
-		<script src="<c:url value='/resources/vendor/jquery/jquery.min.js' />"></script>
-		<script
-			src="<c:url value='/resources/vendor/bootstrap/js/bootstrap.bundle.min.js' />"></script>
-		<!-- Menu Toggle Script -->
-		<script>
-			$("#menu-toggle").click(function(e) {
-				e.preventDefault();
-				$("#wrapper").toggleClass("toggled");
-			});
-		</script>
+		<!-- /#page-content-wrapper -->
+
+	</div>
+	<!-- /#wrapper -->
+	<!-- Bootstrap core JavaScript -->
+	<script src="<c:url value='/resources/vendor/jquery/jquery.min.js' />"></script>
+	<script
+		src="<c:url value='/resources/vendor/bootstrap/js/bootstrap.bundle.min.js' />"></script>
+	<!-- Menu Toggle Script -->
+	<script>
+		$("#menu-toggle").click(function(e) {
+			e.preventDefault();
+			$("#wrapper").toggleClass("toggled");
+		});
+	</script>
+
 </body>
 
 </html>

@@ -5,11 +5,13 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import io.github.hastar.VO.PostVO;
 
@@ -20,14 +22,15 @@ public class HarinController {
 	BoardService bsi;
 	
 	@GetMapping("/test")
-	public String test() {
+	public String test(@RequestParam(value = "rKey", defaultValue = "default")String pKey,Model model) {
+		model.addAttribute("warn",pKey);
 		return "first";
 	}
 	
 	@GetMapping("/board")
-	public String boardTest(HttpSession session) {
-		if(session.getAttribute("id")==null) {
-			System.out.println("사용자의 아이디 값이 없습니다.");
+	public String boardTest(HttpSession session,RedirectAttributes redirectAttributes) {
+		if(session.getAttribute("id") == null) {
+			redirectAttributes.addAttribute("rKey", "please Login");
 			return "redirect:/test";
 		}
 		return "board/board";
@@ -37,6 +40,12 @@ public class HarinController {
 	public String viewDetail(@PathVariable String numb) {
 		System.out.println("상세보기 No : "+numb);
 		return "board/boardDetail";
+	}
+	
+	@GetMapping("/update/{numb}")
+	public String updateViewDetail(@PathVariable String numb) {
+		System.out.println("상세보기 No : "+numb);
+		return "board/boardUpdate";
 	}
 	
 	@GetMapping("/createBoard")

@@ -63,7 +63,19 @@
 					</ul>
 				</div>
 			</nav>
-			<div class="container-fluid">{{name}}</div>
+			<div class="container-fluid">
+			{{name}}
+			<%
+				if(!"default".equals(request.getAttribute("warn").toString())){
+					String test =request.getAttribute("warn").toString();
+			%>		
+				<script>
+					alert("<%=test%>");
+				</script>	
+			<%
+				}
+			%>
+			</div>
 		</div>
 		<!-- /#page-content-wrapper -->
 

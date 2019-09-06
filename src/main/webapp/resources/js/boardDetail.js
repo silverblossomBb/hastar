@@ -11,8 +11,9 @@ app.controller('MainCtrl',function($scope,$http){
 			url:"/view/"+$scope.viewN,
 			method:"POST"
 		}).then(function(data){
-			console.log("data : ",data);
+			console.log("data : ",data.data);
 			$scope.boardData=data.data;
+			
 		}).catch(function(err){
 			console.log("ERR! : ",err);
 		});
@@ -34,6 +35,17 @@ app.controller('MainCtrl',function($scope,$http){
 		location.href="/download/"+idex;
 	}
 	
+	$scope.getUserInfo = function(){
+		$http({
+			url:"/getUserInfo/"+$scope.viewN,
+			method:"POST"
+		}).then(function(data){
+			console.log("data : ",data.data);
+			$scope.boardData=data.data;
+		}).catch(function(err){
+			console.log("ERR! : ",err);
+		});
+	}
 	
 	$scope.selectOnePost();
 	$scope.getStorageData();

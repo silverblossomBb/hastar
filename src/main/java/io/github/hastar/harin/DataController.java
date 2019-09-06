@@ -44,9 +44,15 @@ public class DataController {
 			resultList.add(resultMap);
 			return resultList;
 		}
-		
 		resultList = bsi.getFileData(numb);
 		return resultList;
+	}
+	
+	@PostMapping String getUserInfo(HttpSession session) {
+		if(session.getAttribute("name") != null) {
+			return session.getAttribute("name").toString();
+		}
+		return "false";
 	}
 	
 
