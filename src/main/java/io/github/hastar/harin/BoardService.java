@@ -17,4 +17,8 @@ public class BoardService {
 	public List<PostVO> getAllData(){
 		return bm.getAllData();
 	}
+	
+	public PostVO getOneData(int no) {
+		return bm.getOneData(no);
+	}
 }

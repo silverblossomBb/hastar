@@ -9,4 +9,5 @@ import io.github.hastar.VO.PostVO;
 @Mapper
 public interface BoardMapper {
 	public List<PostVO> getAllData();
+	public PostVO getOneData(int no);
 }

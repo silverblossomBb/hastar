@@ -11,5 +11,5 @@ public class PostVO {
 	private String title;
 	private String content;
 	private String name;
-	private String timeLong;
+	private String timeLog;
 }

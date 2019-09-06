@@ -85,17 +85,11 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="item in storage" ng-click="intoDetail(item.pno)">
-								<td>{{item.pno}}</td>
-								<td>{{item.comment}}</td>
-								<td>{{item.writer}}</td>
-								<td>{{item.time}}</td>
-							</tr>
-							<tr ng-click="intoDetail(1)">
-								<td>1</td>
-								<td>가나다라</td>
-								<td>Harin</td>
-								<td>2019-09-06</td>
+							<tr ng-repeat="item in storage" ng-click="intoDetail(item.no)">
+								<td>{{item.no}}</td>
+								<td>{{item.title}}</td>
+								<td>{{item.name}}</td>
+								<td>{{item.timeLog}}</td>
 							</tr>
 						</tbody>
 					</table>

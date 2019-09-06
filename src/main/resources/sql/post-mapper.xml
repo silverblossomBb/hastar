@@ -9,5 +9,11 @@
 		  FROM `notice`
 		 WHERE delYn = 'N'
 	</select>
+	
+	<select id="getOneData" parameterType="Integer" resultType="PostVO">
+		SELECT *
+		  FROM `notice`
+		 WHERE no = ${no} and delYn = 'N'
+	</select>
 
 </mapper>

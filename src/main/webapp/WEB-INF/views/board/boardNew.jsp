@@ -73,7 +73,27 @@
 				</div>
 			</nav>
 			<div class="container-fluid">
-			{{name}}
+				<form method="post" action="" enctype="multipart/form-data">
+					<h2>Title</h2>
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" aria-label="Default"
+							aria-describedby="inputGroup-sizing-default">
+					</div>
+					<h2>Content</h2>
+					<div class="input-group">
+						<textarea class="form-control" aria-label="With textarea"></textarea>
+					</div>
+					<h2>File Upload</h2>
+					<div class="input-group">
+						<div class="custom-file">
+							<input type="file" class="custom-file-input"
+								id="inputGroupFile04"> <label class="custom-file-label"
+								for="inputGroupFile04">Choose file</label>
+						</div>
+					</div>
+
+					<input type="submit" class="btn btn-success" value="전송">
+				</form>
 			</div>
 		</div>
 		<!-- /#page-content-wrapper -->
