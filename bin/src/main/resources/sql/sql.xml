@@ -15,15 +15,10 @@
 	
 	<!-- upload Table -->
 	<insert id="insertUpload" parameterType="io.github.hastar.VO.UploadVO">
-		insert into upload (noticeNo, id, `name`, originName, `uuid`) values (#{noticeNo}, #{id}, #{name}, #{originName}, #{uuid})
+		insert into upload (noticeNo, id, `name`, originName, `uuid`) values (#{noticeNo}, #{id}, #{name}, #{originName}, #{uuid});
 	</insert>
 	
 	<select id="selectUpload" parameterType="io.github.hastar.VO.UploadVO" resultType="hashmap">
-		select `uuid`, originName from upload where no = #{no}
+		select `uuid`, originName from upload where no = #{no};
 	</select>
-	
-	<!-- download Table -->
-	<insert id="insertDownload" parameterType="io.github.hastar.VO.DownloadVO">
-		insert into download (id, `uuid`) values (#{id}, #{uuid})
-	</insert>
 </mapper>

@@ -9,5 +9,13 @@ public class DownloadVO {
 		this.id = id;
 		this.uuid = uuid;
 	}
+
+	public String getId() {
+		return id;
+	}
+
+	public String getUuid() {
+		return uuid;
+	}
 	
 }

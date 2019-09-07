@@ -57,16 +57,6 @@ public class FileService {
 		}
 	}
 	
-	private void setUpload(UploadVO vo) {
-		HashMap<String, Object> paramMap = new HashMap<String, Object>();
-		QueryId query = new QueryId();
-		paramMap.put("queryType", "insert");
-		paramMap.put("queryId", query.id("upload"));
-		paramMap.put("params", vo);
-		fileDao.upload(paramMap);
-		
-	}
-	
 	public void fileDownload(int noticeNo, String id, HttpServletResponse res, HttpSession session) {
 		HashMap<String,Object> fileInfo = getUpload(noticeNo);
 		String uuid = fileInfo.get("uuid").toString();
@@ -84,10 +74,21 @@ public class FileService {
 			input.close();
 			output.close();
 			
+			setDownload(new DownloadVO(session.getAttribute("id").toString(), uuid));
 			
 		} catch (Exception e) {
 			
 		}
+	}
+	
+	private void setUpload(UploadVO vo) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		QueryId query = new QueryId();
+		paramMap.put("queryType", "insert");
+		paramMap.put("queryId", query.id("upload"));
+		paramMap.put("params", vo);
+		fileDao.upload(paramMap);
+		
 	}
 	
 	private HashMap<String,Object> getUpload(int no) {
@@ -107,7 +108,7 @@ public class FileService {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		QueryId query = new QueryId();
 		paramMap.put("queryType", "insert");
-		paramMap.put("queryId", query.id("upload"));
+		paramMap.put("queryId", query.id("download"));
 		paramMap.put("params", vo);
 		fileDao.download(paramMap);
 	}

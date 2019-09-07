@@ -16,28 +16,24 @@ import io.github.hastar.Service.LoginService;
 public class LoginController {
 	
 	@Autowired
-	LoginService ls;
+	LoginService loginService;
 	
 	@RequestMapping("/login")
 	public void login(HttpServletResponse res) {
-		ls.step1(res);
+		loginService.step1(res);
 	}
 	
 	@RequestMapping("/KakaoBack")
 	public String kakaoBack(HttpServletRequest req, HttpServletResponse res, HttpSession session) {
-		HashMap<String, Object> resultMap = ls.step2(req, res); 
-		if ("true".equals(resultMap.get("status"))) {
-			session.setAttribute("id", resultMap.get("id"));
-			session.setAttribute("name", resultMap.get("name"));
-			session.setAttribute("image", resultMap.get("image"));
-		}
+		loginService.step2(req, res, session);
 		
 		return "redirect:/test";
 	}
 	
 	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
+	public String logout(HttpServletResponse res, HttpSession session) {
+		loginService.logout(res, session);
+		//session.invalidate();
 		
 		return "redirect:/test";
 	}

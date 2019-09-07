@@ -16,6 +16,10 @@ public class QueryId {
 			target = new QueryVO("selectUpload", "insertUpload", "deleteUpload", "updateUpload");
 			break;
 			
+		case "download":
+			target = new QueryVO("selectDownload", "insertDownload", "deleteDownload", "updateDownload");
+			break;
+			
 		}
 		
 		return target;
