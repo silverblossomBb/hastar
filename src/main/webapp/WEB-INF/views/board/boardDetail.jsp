@@ -75,6 +75,7 @@
 					class="badge badge-pill badge-secondary">Writer :
 					{{boardData.name}}</span>
 				<button type="button" class="btn btn-light">{{boardData.timeLog}}</button>
+				<button type="button" class="btn btn-success" ng-click="goToUpdate()" ng-if="isYours" >update</button>
 				<div class="alert alert-primary">
 					<span class="badge badge-info">Title</span><br>{{boardData.title}}
 				</div>
@@ -94,8 +95,7 @@
 		<!-- /#wrapper -->
 		<!-- Bootstrap core JavaScript -->
 		<script src="<c:url value='/resources/vendor/jquery/jquery.min.js' />"></script>
-		<script
-			src="<c:url value='/resources/vendor/bootstrap/js/bootstrap.bundle.min.js' />"></script>
+		<script src="<c:url value='/resources/vendor/bootstrap/js/bootstrap.bundle.min.js' />"></script>
 		<!-- Menu Toggle Script -->
 		<script>
 			$("#menu-toggle").click(function(e) {

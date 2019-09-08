@@ -13,6 +13,7 @@ public interface BoardMapper {
 	public PostVO getOneData(String no);
 	public int setNewData(PostVO pv);
 	public PostVO selectNewData(PostVO pv);
+	public int updateData(PostVO pv);
 	
 	public List<HashMap<String,Object>> getFileData(String no);
 }

@@ -21,6 +21,11 @@ public class HarinController {
 	@Autowired
 	BoardService bsi;
 	
+	@GetMapping("/temp")
+	public String tempData() {
+		return "redirect:/test";
+	}
+	
 	@GetMapping("/test")
 	public String test(@RequestParam(value = "rKey", defaultValue = "default")String pKey,Model model) {
 		model.addAttribute("warn",pKey);
@@ -36,16 +41,16 @@ public class HarinController {
 		return "board/board";
 	}
 	
+	@GetMapping("/update/{numb}")
+	public String updateDetail(@PathVariable String numb) {
+		System.out.println("수정 No : "+numb);
+		return "board/boardUpdate";
+	}
+	
 	@GetMapping("/view/{numb}")
 	public String viewDetail(@PathVariable String numb) {
 		System.out.println("상세보기 No : "+numb);
 		return "board/boardDetail";
-	}
-	
-	@GetMapping("/update/{numb}")
-	public String updateViewDetail(@PathVariable String numb) {
-		System.out.println("상세보기 No : "+numb);
-		return "board/boardUpdate";
 	}
 	
 	@GetMapping("/createBoard")
@@ -55,6 +60,12 @@ public class HarinController {
 			return "redirect:/board";
 		}
 		return "board/boardNew";
+	}
+	
+	@PostMapping("/update")
+	public String updateBeforeData(@Valid PostVO pv,@RequestParam("file")MultipartFile[] files,HttpSession session){
+		bsi.updateData(pv,session);
+		return "redirect:/board";
 	}
 	
 	@PostMapping("/uploads")

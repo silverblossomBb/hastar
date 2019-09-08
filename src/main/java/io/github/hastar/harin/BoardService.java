@@ -39,6 +39,18 @@ public class BoardService {
 		return -1;
 	}
 	
+	public int updateData(PostVO pv,HttpSession session) {
+		
+		pv.setName(session.getAttribute("name").toString());
+		int result= bm.updateData(pv);
+		if(result>0) {
+			PostVO pvs =bm.selectNewData(pv);
+			System.out.println(pvs.toString());
+			return Integer.parseInt(pvs.getNo());
+		}
+		return -1;
+	}
+	
 	public List<HashMap<String,Object>> getFileData(String no){
 		List<HashMap<String,Object>> resultList = bm.getFileData(no);
 		System.out.println("RESULT LIST = "+resultList.toString());

@@ -34,4 +34,12 @@
 		  FROM `upload`
 		 WHERE noticeNo=#{no}
 	</select>
+	
+	<insert id="updateData" parameterType="PostVO">
+		UPDATE `notice`
+		   SET name=#{name},
+		   	   title=#{title},
+		   	   content=#{content}
+		 WHERE no=#{no}
+	</insert>
 </mapper>

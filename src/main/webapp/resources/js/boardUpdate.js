@@ -2,20 +2,43 @@ const app = angular.module('hastarApp',[]);
 
 app.controller('MainCtrl',function($scope,$http){
 	$scope.boardData={};
-	$scope.name="Board New";
+	$scope.storageFile={};
+	$scope.isYours=false;
 	$scope.link=document.location.href.split("/");
 	$scope.viewN = document.location.href.split("/")[$scope.link.length-1];
 	
-	$scope.getBoardData=function(){
+	$scope.selectOnePost = function(){
 		$http({
-			url:"/view/"+viewN,
-			method:"POST",
-			params:$scope.dataInfo
+			url:"/view/"+$scope.viewN,
+			method:"POST"
 		}).then(function(data){
-			console.log("DATA : ",data.data);
+			console.log("data : ",data.data);
+			$scope.boardData=data.data;
+			console.log("this.data = ",$scope.boardData);
 		}).catch(function(err){
 			console.log("ERR! : ",err);
 		});
 	}
-	$scope.getBoardData();
+	
+	$scope.getStorageData= function(){
+		$http({
+			url:"/getFileList/"+$scope.viewN,
+			method:"POST"
+		}).then(function(data){
+			console.log("datas : ",data);
+			$scope.storageFile=data.data;
+
+		}).catch(function(err){
+			console.log("ERR! : ",err);
+		});
+	}
+	
+	$scope.goToFile = function(idex){
+		location.href="/download/"+idex;
+	}
+	
+	
+	$scope.selectOnePost();
+	$scope.getStorageData();
+	
 });
