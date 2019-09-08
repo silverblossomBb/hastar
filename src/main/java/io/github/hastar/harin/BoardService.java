@@ -51,6 +51,15 @@ public class BoardService {
 		return -1;
 	}
 	
+	public int deleteData(String key,HttpSession session) {
+		HashMap<String,Object> testMap = new HashMap<String,Object>();
+		testMap.put("name", session.getAttribute("name").toString());
+		testMap.put("key",key);
+		int result = bm.deleteData(testMap);
+		
+		return -1;
+	}
+	
 	public List<HashMap<String,Object>> getFileData(String no){
 		List<HashMap<String,Object>> resultList = bm.getFileData(no);
 		System.out.println("RESULT LIST = "+resultList.toString());

@@ -48,7 +48,10 @@
 						<li class="nav-item active"><a class="nav-link" href="#">Home
 								<span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+						<li ng-switch on="isLogin" class="nav-item">
+							<a ng-switch-when="true" class="nav-link" href="/logout">LogOut</a>
+							<a ng-switch-default class="nav-link" href="/login">Login</a>
+						</li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -65,6 +68,7 @@
 			</nav>
 			<div class="container-fluid">
 			{{name}}
+			<img src="http://cise-egypt.com/wp-content/uploads/2019/09/WELCOME-ST-IVES.jpg"/>
 			<%
 				if(!"default".equals(request.getAttribute("warn").toString())){
 					String test =request.getAttribute("warn").toString();

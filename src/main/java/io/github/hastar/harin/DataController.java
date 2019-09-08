@@ -53,9 +53,10 @@ public class DataController {
 	public HashMap<String, Object> getUserInfo(HttpSession session) {
 		HashMap<String, Object> test = new HashMap<String, Object>();
 		if (session.getAttribute("name") != null) {
-			test.put("result", session.getAttribute("name").toString());
+			test.put("result", true);
+			test.put("results", session.getAttribute("name").toString());
 		}else {
-			test.put("result", "false");
+			test.put("result", false);
 		}
 		return test;
 	}

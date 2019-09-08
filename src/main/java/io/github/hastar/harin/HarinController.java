@@ -68,6 +68,12 @@ public class HarinController {
 		return "redirect:/board";
 	}
 	
+	@GetMapping("/delete/{key}")
+	public String deleteData(@PathVariable String key,HttpSession session){
+		bsi.deleteData(key,session);
+		return "redirect:/board";
+	}
+	
 	@PostMapping("/uploads")
 	public String uploadNewData(@Valid PostVO pv,@RequestParam("file")MultipartFile[] files,HttpSession session){
 		System.out.println("PostVO : "+pv);

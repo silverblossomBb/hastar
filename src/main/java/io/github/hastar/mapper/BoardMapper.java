@@ -14,6 +14,6 @@ public interface BoardMapper {
 	public int setNewData(PostVO pv);
 	public PostVO selectNewData(PostVO pv);
 	public int updateData(PostVO pv);
-	
+	public int deleteData(HashMap<String,Object> test);
 	public List<HashMap<String,Object>> getFileData(String no);
 }

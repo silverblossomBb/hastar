@@ -6,7 +6,21 @@ app.controller('MainCtrl',function($scope,$http){
 	$scope.isYours=false;
 	$scope.link=document.location.href.split("/");
 	$scope.viewN = document.location.href.split("/")[$scope.link.length-1];
+	$scope.isLogin=false;
 	
+	$scope.getUserInfo = function(){
+		$http({
+			url:"/getUserInfo",
+			method:"POST"
+		}).then(function(data){
+			console.log("data : ",data.data.result);
+			$scope.isLogin=data.data.result;
+		}).catch(function(err){
+			console.log("ERR! : ",err);
+		});
+	}
+	
+
 	$scope.selectOnePost = function(){
 		$http({
 			url:"/view/"+$scope.viewN,
@@ -39,8 +53,11 @@ app.controller('MainCtrl',function($scope,$http){
 	}
 	
 	$scope.goToUpdate=function(){
-		console.log("클릭 된것 같은데");
 		location.href="/update/"+$scope.viewN;
+	}
+	
+	$scope.goToDelete=function(){
+		location.href="/delete/"+$scope.viewN;
 	}
 	
 	$scope.getUserInfo = function(){
@@ -57,5 +74,5 @@ app.controller('MainCtrl',function($scope,$http){
 	
 	$scope.selectOnePost();
 	$scope.getStorageData();
-	
+	$scope.getUserInfo();
 });
