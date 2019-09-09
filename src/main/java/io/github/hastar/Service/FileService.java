@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import io.github.hastar.Dao.FileDao;
@@ -28,7 +29,7 @@ public class FileService {
 	@Autowired
 	FileDao fileDao;
 	
-	public void fileUpload(MultipartFile[] files, HttpSession session, int noticeNo) {
+	public void fileUpload(@RequestParam("file") MultipartFile[] files, HttpSession session, int noticeNo) {
 		if (files.length > 0) {
 			try {
 				for (int i = 0; i < files.length; i++) {
@@ -41,20 +42,23 @@ public class FileService {
 					}
 					
 					String originName = file.getOriginalFilename();
+					if (originName != "") {
+						String uuid = UUID.randomUUID().toString();
+						OutputStream os = new FileOutputStream(new File(path + uuid));
+						byte[] data = file.getBytes();
+						os.write(data);
+						os.close();
+						
+						setUpload(new UploadVO(noticeNo, session.getAttribute("id").toString(), session.getAttribute("name").toString(), originName, uuid));
+					}
 					
-					String uuid = UUID.randomUUID().toString();
-					OutputStream os = new FileOutputStream(new File(path + uuid));
-					byte[] data = file.getBytes();
-					os.write(data);
-					os.close();
-					
-					setUpload(new UploadVO(noticeNo, session.getAttribute("id").toString(), session.getAttribute("name").toString(), originName, uuid));
 				}
 				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+		
 	}
 	
 	public void fileDownload(int noticeNo, String id, HttpServletResponse res, HttpSession session) {
