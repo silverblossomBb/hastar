@@ -81,7 +81,7 @@ public class FileService {
 			setDownload(new DownloadVO(session.getAttribute("id").toString(), uuid));
 			
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		}
 	}
 	

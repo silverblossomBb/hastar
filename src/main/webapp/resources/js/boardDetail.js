@@ -7,19 +7,6 @@ app.controller('MainCtrl',function($scope,$http){
 	$scope.link=document.location.href.split("/");
 	$scope.viewN = document.location.href.split("/")[$scope.link.length-1];
 	$scope.isLogin=false;
-	
-	$scope.getUserInfo = function(){
-		$http({
-			url:"/getUserInfo",
-			method:"POST"
-		}).then(function(data){
-			console.log("data : ",data.data.result);
-			$scope.isLogin=data.data.result;
-		}).catch(function(err){
-			console.log("ERR! : ",err);
-		});
-	}
-	
 
 	$scope.selectOnePost = function(){
 		$http({
@@ -67,6 +54,7 @@ app.controller('MainCtrl',function($scope,$http){
 		}).then(function(data){
 			console.log("dataE : ",data);
 			$scope.isYours = $scope.boardData.name==data.data.result ? true : false
+			$scope.isLogin=data.data.result;
 		}).catch(function(err){
 			console.log("ERR! : ",err);
 		});
@@ -74,5 +62,4 @@ app.controller('MainCtrl',function($scope,$http){
 	
 	$scope.selectOnePost();
 	$scope.getStorageData();
-	$scope.getUserInfo();
 });

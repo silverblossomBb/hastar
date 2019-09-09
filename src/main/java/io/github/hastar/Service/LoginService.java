@@ -31,8 +31,8 @@ public class LoginService {
 		try {
 			String url = "https://kauth.kakao.com/oauth/authorize";
 			url += "?client_id=4083645aa3b56c3390fa00b273141f7f&redirect_uri=";
-//			url += URLEncoder.encode("http://gdj16.gudi.kr:20016/KakaoBack", "UTF-8");
-			url += URLEncoder.encode("http://localhost:8080/KakaoBack", "UTF-8");
+			url += URLEncoder.encode("http://gdj16.gudi.kr:20016/KakaoBack", "UTF-8");
+//			url += URLEncoder.encode("http://localhost:8080/KakaoBack", "UTF-8");
 			url += "&response_type=code";
 			res.sendRedirect(url);
 			
@@ -51,8 +51,8 @@ public class LoginService {
 			String code = req.getParameter("code");		
 			String url = "https://kauth.kakao.com/oauth/token";
 			url += "?client_id=4083645aa3b56c3390fa00b273141f7f&redirect_uri=";
-//			url += URLEncoder.encode("http://gdj16.gudi.kr:20016/KakaoBack", "UTF-8");
-			url += URLEncoder.encode("http://localhost:8080/KakaoBack", "UTF-8");
+			url += URLEncoder.encode("http://gdj16.gudi.kr:20016/KakaoBack", "UTF-8");
+//			url += URLEncoder.encode("http://localhost:8080/KakaoBack", "UTF-8");
 			url += "&code=" + code;
 			url += "&grant_type=authorization_code";
 			HashMap<String, Object> resultMap = HttpUtil.getUrl(url);
