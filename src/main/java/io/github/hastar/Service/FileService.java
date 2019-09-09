@@ -65,6 +65,8 @@ public class FileService {
 		HashMap<String,Object> fileInfo = getUpload(noticeNo);
 		String uuid = fileInfo.get("uuid").toString();
 		String originName = fileInfo.get("originName").toString();
+		System.out.println("uuid: " + uuid);
+		System.out.println("originName: " + originName);
 		
 		String path = "D:\\HastarData\\";
 		
@@ -73,7 +75,9 @@ public class FileService {
 			OutputStream output = res.getOutputStream();
 			IOUtils.copy(input, output);
 			
-			//res.setHeader("Content-Disposition", "inline");
+//			res.setHeader("Content-Disposition", "inline");
+//			res.setContentType("application/octet-stream");
+//			res.setContentType("image/png");
 			res.setHeader("Content-Disposition", "attachment; filename=\""+ originName + "\"");
 			input.close();
 			output.close();
